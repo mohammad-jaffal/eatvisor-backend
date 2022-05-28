@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 include("connection.php");
 $id = $_POST["restaurant_id"];
 $query = $mysqli->prepare("SELECT * from restaurants where restaurant_id = ?");

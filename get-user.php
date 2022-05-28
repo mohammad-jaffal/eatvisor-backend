@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 include("connection.php");
 $id = $_POST["user_id"];
 $query = $mysqli->prepare("SELECT * from users WHERE user_id = ?");

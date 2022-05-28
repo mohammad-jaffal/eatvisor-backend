@@ -1,6 +1,7 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 include("connection.php");
-$query = $mysqli->prepare("SELECT * from users");
+$query = $mysqli->prepare("SELECT * from users WHERE type = 1");
 $query->execute();
 $array = $query->get_result();
 $response = [];
