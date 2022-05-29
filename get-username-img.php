@@ -2,7 +2,7 @@
 header('Access-Control-Allow-Origin: *');
 include("connection.php");
 $id = $_POST["user_id"];
-$query = $mysqli->prepare("SELECT username from users WHERE user_id = ?");
+$query = $mysqli->prepare("SELECT username, profile_picture from users WHERE user_id = ?");
 $query->bind_param("i", $id);
 $query->execute();
 $array = $query->get_result();
