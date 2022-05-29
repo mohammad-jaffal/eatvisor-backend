@@ -1,7 +1,7 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 include("connection.php");
-$query = $mysqli->prepare("SELECT * from reviews ORDER BY approved");
+$query = $mysqli->prepare("SELECT * from reviews WHERE approved = 0");
 $query->execute();
 $array = $query->get_result();
 $response = [];
