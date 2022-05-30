@@ -1,7 +1,10 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 include("connection.php");
-$id = $_POST["restaurant_id"];
+
+if(isset($_POST["restaurant_id"])){
+    $id = $_POST["restaurant_id"];
+}
 $approved = 1;
 $query = $mysqli->prepare("SELECT * from reviews WHERE restaurants_restaurant_id = ? AND approved = ?");
 $query->bind_param("ii", $id, $approved);

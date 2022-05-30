@@ -1,7 +1,11 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 include("connection.php");
-$id = $_POST["restaurant_id"];
+
+if(isset($_POST["restaurant_id"])){
+    $id = $_POST["restaurant_id"];
+}
+
 $query = $mysqli->prepare("SELECT * from restaurants where restaurant_id = ?");
 $query->bind_param("i", $id);
 $query->execute();
