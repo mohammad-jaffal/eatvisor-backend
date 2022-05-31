@@ -2,8 +2,6 @@
 header('Access-Control-Allow-Origin: *');
 include("connection.php");
 
-$response = [];
-$response["success"] = false;
 
 if(isset($_POST["email"])){
     $email = $_POST["email"];
@@ -26,7 +24,21 @@ $query->bind_param("sssiss", $username, $email, $password, $type, $image_url, $b
 $query->execute();
 
 
-$response["success"] = true;
+$query = $mysqli->prepare("SELECT user_id FROM users WHERE username = ?");
+$query->bind_param("s", $username);
+$query->execute();
+$query->store_result();
+$num_rows = $query->num_rows();
+$query->bind_result($id);
+$query->fetch();
+$response = [];
+if($num_rows == 0){
+    $response["success"] = false;
+}else{
+    $response["success"] = true;
+    $response["user_id"] = $id;
+}
+
 
 echo json_encode($response);
 ?>
